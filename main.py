@@ -12,7 +12,6 @@ from email.mime.multipart import MIMEMultipart
 from inspect import classify_class_attrs
 import win32com.client as win32
 
-
 #r= open('email_destino.txt','r')
 #email_para = r.read()
 
@@ -62,10 +61,8 @@ Posto_email = dict([
 def enviar_email(UnidadeEmail,UnidadeNome):  
 
     print("\n\nEmail :",UnidadeEmail)
-    subject = "FILA DE ESPERA SISREG DA UNIDADE : "
-    subject = subject + UnidadeNome
+    subject = "FILA DE ESPERA SISREG DA UNIDADE : " + UnidadeNome
     Cam_arquivo = UnidadeNome + '.xlsx'
-
     # criar a integração com o outlook
     outlook = win32.Dispatch('outlook.application')
 
@@ -75,11 +72,11 @@ def enviar_email(UnidadeEmail,UnidadeNome):
     email.To = "edu.py.codigolivre@gmail.com"
     email.Subject = subject
     email.HTMLBody = Texto_email
-    #email.Attachments.Add(Cam_arquivo)
+    attachment = os.path.abspath(Cam_arquivo)
+    email.Attachments.Add(attachment)
 
     email.Send()
     print("Email Enviado")  
-
 
 
 def Autopy():
@@ -97,10 +94,7 @@ def Autopy():
 
         unidade_email= item[1]
         
-        
-        
         enviar_email(unidade_email,Unidade)
-
-        #os.remove(pasta_destino)
+        os.remove(pasta_destino)
 
 Autopy()

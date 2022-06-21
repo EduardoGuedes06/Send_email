@@ -1,1 +1,2 @@
-Envio de Email ultilizando YAGMAIL
+Envio de Email ultilizando o Outlook
+

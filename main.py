@@ -69,7 +69,7 @@ def enviar_email(UnidadeEmail,UnidadeNome):
     # criar um email
     email = outlook.CreateItem(0)
     # configurar as informações do seu e-mail
-    email.To = "edu.py.codigolivre@gmail.com"
+    email.To = UnidadeEmail
     email.Subject = subject
     email.HTMLBody = Texto_email
     attachment = os.path.abspath(Cam_arquivo)
@@ -77,7 +77,6 @@ def enviar_email(UnidadeEmail,UnidadeNome):
 
     email.Send()
     print("Email Enviado")  
-
 
 def Autopy():
 
